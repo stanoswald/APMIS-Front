@@ -62,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    this.$axios.get("selectDormServlet?dorm_id=615").then(resp => {
+    this.$axios.get("myDormInfoServlet?dorm_id=615").then(resp => {
       console.log(resp.data);
       this.tableData = resp.data.member;
       this.dormInfo = resp.data.dormInfo;
