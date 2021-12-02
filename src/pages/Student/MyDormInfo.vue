@@ -2,16 +2,19 @@
   <div>
     <el-form label-width="80px">
       <el-form-item label="宿舍号">
-        <el-input v-model="dormInfo.dormId"></el-input>
+        <el-input v-model="dormInfo.id"></el-input>
       </el-form-item>
       <el-form-item label="所属公寓">
-        <el-input v-model="dormInfo.apId"></el-input>
+        <el-input v-model="dormInfo.apartment"></el-input>
       </el-form-item>
       <el-form-item label="宿舍长">
-        <el-input v-model="dormInfo.leaderNo"></el-input>
+        <el-input v-model="dormInfo.leader"></el-input>
       </el-form-item>
       <el-form-item label="联系电话">
         <el-input v-model="dormInfo.tel"></el-input>
+      </el-form-item>
+      <el-form-item label="管理员">
+        <el-input v-model="dormInfo.manager"></el-input>
       </el-form-item>
     </el-form>
 
@@ -37,7 +40,7 @@
           width="180">
       </el-table-column>
       <el-table-column
-          prop="deptNo"
+          prop="dept"
           label="所属院系">
       </el-table-column>
     </el-table>
@@ -45,14 +48,16 @@
 </template>
 
 <script>
+
 export default {
   name: 'MyDormInfo',
   data() {
     return {
       dormInfo: {
-        dormId: '',
-        apId: '',
-        leaderNo: '',
+        id: '',
+        apartment: '',
+        leader: '',
+        manager: '',
         tel: ''
       },
       tableData: [],
@@ -62,14 +67,16 @@ export default {
     }
   },
   mounted() {
-    this.$axios.get("myDormInfoServlet?dorm_id=615").then(resp => {
+    this.$axios.get("myDormInfoServlet?dorm_id=18615").then(resp => {
       console.log(resp.data);
-      this.tableData = resp.data.member;
+      this.tableData = resp.data.tableData;
       this.dormInfo = resp.data.dormInfo;
-    });
-  },
-
+      this.dormInfo.id = resp.data.dormInfo.id.toString().substring(2)
+    })
+  }
 }
+
+
 </script>
 
 <style scoped>
