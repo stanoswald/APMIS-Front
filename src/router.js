@@ -4,7 +4,7 @@ import Router from "vue-router";
 import Login from "./pages/Login.vue"
 
 import Student from './pages/Frame/Student'
-import StuSideBar from "@/pages/Frame/StuSideBar";
+import Container from "@/pages/Frame/Container";
 
 import MyDormInfo from "@/pages/Student/MyDormInfo"
 import NearbyDormInfo from "@/pages/Student/NearbyDormInfo";
@@ -26,27 +26,28 @@ const router = new Router({
             }
         },
         {
-            path: "/student",
-            component: Student,
-            meta: {
-                title: "学生"
-            },
+            path: "/container",
+            component: Container,
             children: [
                 {
-                    path: "/student/my-dorm",
+                    path: "/student",
                     components: {
-                        side:StuSideBar,
-                        main:MyDormInfo
-                    }
-                },
-                {
-                    path: "/student/nearby-dorm",
-                    components: {
-                        side:StuSideBar,
-                        main:NearbyDormInfo
-                    }
-                },
-            ]
+                        aside: Student,
+                    },
+                    meta: {
+                        title: "学生"
+                    },
+                    children: [
+                        {
+                            path: "/student/my-dorm",
+                            component: MyDormInfo
+                        },
+                        {
+                            path: "/student/nearby-dorm",
+                            component: NearbyDormInfo
+                        },
+                    ]
+                }]
         }
     ],
     mode: "history"

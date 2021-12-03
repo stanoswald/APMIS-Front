@@ -40,12 +40,7 @@ export default {
 }
 </script>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  /*box-sizing: border-box;*/
-}
+<style scoped>
 body{
   width: 100vw;
   height: 100vh;
@@ -59,7 +54,15 @@ body{
   justify-content: center;
   align-items: center;
 }
-#login-box{
+</style>
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  /*box-sizing: border-box;*/
+}
+
+#login-box {
   padding: 36.8px 44.8px 0px 44.8px;
   width: 408px;
   height: 624px;
@@ -67,15 +70,18 @@ body{
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.8);
 }
-#btn{
+
+#btn {
   text-align: center;
   margin-top: 50px;
 }
-.el-button--primary{
+
+.el-button--primary {
   background-color: rgb(71, 115, 161);
-  border-color:rgb(71, 115, 161);
+  border-color: rgb(71, 115, 161);
 }
-.el-divider{
+
+.el-divider {
   margin-top: 50px;
   margin-bottom: 50px;
   background-color: #606266;

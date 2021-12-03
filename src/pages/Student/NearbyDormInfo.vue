@@ -1,4 +1,5 @@
 <template>
+  <el-main>
     <div>
       <el-form label-width="80px">
         <el-form-item label="宿舍号">
@@ -16,6 +17,7 @@
         </el-form-item>
       </el-form>
     </div>
+  </el-main>
 </template>
 
 <script>
