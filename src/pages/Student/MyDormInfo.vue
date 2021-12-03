@@ -85,7 +85,9 @@ span {
   width: 100%;
   text-align: center;
 }
-
+#lbl{
+  padding-right: 0;
+}
 .el-divider {
   margin-top: 100px;
 }

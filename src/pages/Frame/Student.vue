@@ -17,7 +17,7 @@
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">信息登记</template>
-            <el-menu-item index="/student/repair">报修登记</el-menu-item>
+            <el-menu-item index="/student/repair-reg">报修登记</el-menu-item>
             <el-menu-item index="/student/visitor">访客登记</el-menu-item>
             <el-menu-item index="/student/property">出入物品登记</el-menu-item>
           </el-menu-item-group>

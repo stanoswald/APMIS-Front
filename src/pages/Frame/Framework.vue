@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: "Container",
+  name: "Framework",
 };
 </script>
 

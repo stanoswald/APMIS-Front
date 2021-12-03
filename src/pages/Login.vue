@@ -1,11 +1,14 @@
 <template>
+  <body>
   <div id="login-box">
+
     <div style="text-align: center">
-      <img src="../assets/img/logo.png" style="margin-top: 50px">
+      <img src="../assets/img/logo.png" style="margin-top: 20px;height: 120px">
       <div style="margin-top: 20px">宿舍信息管理系统</div>
     </div>
 
     <el-divider></el-divider>
+
     <el-form label-width="80px" label-position="top">
 
       <el-form-item label="用户名">
@@ -16,32 +19,44 @@
         <el-input v-model="pwd" placeholder="请输入密码" show-password></el-input>
       </el-form-item>
 
-      <el-form-item id="btn">
-        <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+      <el-form-item style="margin-top: 10px">
+        <el-checkbox label="记住密码" name="type"></el-checkbox>
       </el-form-item>
+
+      <el-form-item id="btn">
+        <el-button id="btnn" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+      </el-form-item>
+
     </el-form>
+
   </div>
+  </body>
 </template>
 
 <script>
+
 export default {
   name: 'Login',
   data() {
     return {
-      pwd: '',
-      usr: ''
+      usr: '',
+      pwd: ''
+
     }
   },
   mounted() {
-    // this.$axios.post().then(resp => {
-    //
-    // });
   },
 }
 </script>
 
 <style scoped>
-body{
+* {
+  margin: 0;
+  /*padding: 0;*/
+  box-sizing: border-box;
+}
+
+body {
   width: 100vw;
   height: 100vh;
 
@@ -53,13 +68,6 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-}
-</style>
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  /*box-sizing: border-box;*/
 }
 
 #login-box {
@@ -73,7 +81,12 @@ body{
 
 #btn {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
+}
+
+#btnn {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .el-button--primary {
@@ -82,8 +95,8 @@ body{
 }
 
 .el-divider {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 30px 0 20px 0;
   background-color: #606266;
+  height: 1.5px;
 }
 </style>
