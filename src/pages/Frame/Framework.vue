@@ -10,7 +10,7 @@
           <el-dropdown-item>Delete</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <span>Tom</span>
+      <span>{{name}}</span>
     </el-header>
 
 
@@ -25,6 +25,7 @@
   color: #333;
   line-height: 60px;
 }
+
 .el-aside {
   color: #333;
   height: 100%;
@@ -41,9 +42,23 @@
 </style>
 
 <script>
+
+import router from "@/router";
+
 export default {
   name: "Framework",
-};
+  data() {
+    return {
+      name:''
+    }
+  },
+  mounted() {
+    this.name=sessionStorage.getItem("name")
+    if (this.name == null) {
+      router.push("/login")
+    }
+  }
+}
 </script>
 
 

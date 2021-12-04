@@ -35,7 +35,8 @@ const router = new Router({
                         aside: Student,
                     },
                     meta: {
-                        title: "宿舍管理系统-学生"
+                        title: "宿舍管理系统-学生",
+                        requireAuth: true
                     },
                     children: [
                         {path: "my-dorm", component: MyDormInfo, meta: {title: "本宿舍信息"}},
@@ -54,6 +55,10 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth === true && window.sessionStorage.getItem("username") === undefined) {
+        next("/login")
+    }
+
     if (to.meta.title) {
         document.title = to.meta.title
     }

@@ -12,19 +12,23 @@
     <el-form label-width="80px" label-position="top">
 
       <el-form-item label="用户名">
-        <el-input v-model="usr" placeholder="请输入学号/工号"></el-input>
+        <el-input v-model="username" placeholder="请输入学号/工号">
+          <i slot="prefix" class="el-input__icon el-icon-user-solid"></i>
+        </el-input>
       </el-form-item>
 
       <el-form-item label="密码">
-        <el-input v-model="pwd" placeholder="请输入密码" show-password></el-input>
+        <el-input v-model="password" placeholder="请输入密码" show-password>
+          <i slot="prefix" class="el-input__icon el-icon-lock"></i>
+        </el-input>
       </el-form-item>
 
       <el-form-item style="margin-top: 10px">
         <el-checkbox label="记住密码" name="type"></el-checkbox>
       </el-form-item>
 
-      <el-form-item id="btn">
-        <el-button id="btnn" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+      <el-form-item id="btn-item">
+        <el-button id="btn" type="primary" @click="login">登录</el-button>
       </el-form-item>
 
     </el-form>
@@ -34,18 +38,46 @@
 </template>
 
 <script>
+import router from "@/router";
 
 export default {
   name: 'Login',
   data() {
     return {
-      usr: '',
-      pwd: ''
-
+      username: '',
+      password: ''
     }
   },
-  mounted() {
-  },
+  methods: {
+    login() {
+      this.$axios.post("loginServlet", this.$data).then(resp => {
+        console.log(resp.data)
+
+        if (resp.data !== "fail") {
+          this.$store.commit("SET_USER", resp.data)
+
+          switch (resp.data.role) {
+
+            case "STUDENT":
+              this.$axios.get("stu_info?username="+this.username).then(resp=>{
+                this.$store.commit("SET_STUDENT", resp.data)
+              })
+              router.push("/student")
+              break;
+
+            case "MANAGER":
+              router.push("/manager")
+              break;
+
+            case "PLUMBER":
+              router.push("/plumber")
+              break;
+          }
+        } else
+          alert("密码错误")
+      })
+    }
+  }
 }
 </script>
 
@@ -76,15 +108,17 @@ body {
   height: 624px;
   border: 0px solid red;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
+
+  box-shadow: 0px 0px 30px #333;
 }
 
-#btn {
+#btn-item {
   text-align: center;
   margin-top: 20px;
 }
 
-#btnn {
+#btn {
   padding-left: 30px;
   padding-right: 30px;
 }
