@@ -56,8 +56,8 @@ export default {
   name: 'MyDormInfo',
   data() {
     return {
-      dateTime:"",
-      radio:"",
+      dateTime: "",
+      radio: "",
       dormInfo: {
         dormId: '',
         apId: '',
@@ -91,6 +91,11 @@ span {
 .el-divider {
   margin: 40px 0 40px 0;
 }
+
+#lbl {
+  padding-right: 0;
+}
+
 
 .el-input {
   width: 30%;
