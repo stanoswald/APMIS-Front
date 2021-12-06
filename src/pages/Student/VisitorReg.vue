@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-form label-width="80px" :model="form" ref="form">
-      <el-form-item label="来访者" prop="vis_name">
+      <el-form-item label="来访者" prop="vis_name" required>
         <el-input v-model="form.vis_name" placeholder="来访人姓名"></el-input>
       </el-form-item>
-      <el-form-item label="来访时间" prop="dateTime">
+      <el-form-item label="来访时间" prop="dateTime" required>
         <div class="block">
           <el-date-picker
               v-model="form.dateTime"

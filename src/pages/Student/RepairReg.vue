@@ -7,7 +7,7 @@
       <el-form-item label="登记人" prop="name">
         <el-input v-model="name" :disabled="true"></el-input>
       </el-form-item>
-      <el-form-item label="联系电话" prop="tel">
+      <el-form-item label="联系电话" prop="tel" required>
         <el-input v-model="form.tel"></el-input>
         <el-button type="primary" plain @click="setMyTel" style="margin-left: 20px">我的</el-button>
       </el-form-item>
@@ -19,7 +19,7 @@
             v-model="form.detail">
         </el-input>
       </el-form-item>
-      <el-form-item label="财产类型" prop="value">
+      <el-form-item label="财产类型" prop="value" required>
         <el-cascader
             v-model="form.value"
             :options="options"

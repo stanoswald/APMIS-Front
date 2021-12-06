@@ -5,7 +5,7 @@
         <el-input v-model="dormId" disabled></el-input>
       </el-form-item>
 
-      <el-form-item label="选择月份">
+      <el-form-item label="选择月份" required>
         <div class="block">
           <el-date-picker
               v-model="month"

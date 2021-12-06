@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     login() {
-      this.$axios.post("loginServlet", this.$data).then(resp => {
+      this.$axios.post("login", this.$data).then(resp => {
         console.log(resp.data)
 
         if (resp.data !== "fail") {

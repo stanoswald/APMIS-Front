@@ -2,19 +2,19 @@
   <div>
     <el-form label-width="80px">
       <el-form-item label="宿舍号">
-        <el-input v-model="dormInfo.id"></el-input>
+        <el-input v-model="dormInfo.id" disabled></el-input>
       </el-form-item>
       <el-form-item label="所属公寓">
-        <el-input v-model="dormInfo.apartment"></el-input>
+        <el-input v-model="dormInfo.apartment" disabled></el-input>
       </el-form-item>
       <el-form-item label="宿舍长">
-        <el-input v-model="dormInfo.leader"></el-input>
+        <el-input v-model="dormInfo.leader" disabled></el-input>
       </el-form-item>
       <el-form-item label="联系电话">
-        <el-input v-model="dormInfo.tel"></el-input>
+        <el-input v-model="dormInfo.tel" disabled></el-input>
       </el-form-item>
       <el-form-item label="管理员">
-        <el-input v-model="dormInfo.manager"></el-input>
+        <el-input v-model="dormInfo.manager" disabled></el-input>
       </el-form-item>
     </el-form>
 
