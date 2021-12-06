@@ -2,7 +2,7 @@
   <div>
     <el-form label-width="80px">
       <el-form-item label="宿舍号">
-        <el-input v-model="dormInfo.dormId"></el-input>
+        <el-input v-model="dormId" disabled></el-input>
       </el-form-item>
 
       <el-form-item label="选择月份">
@@ -10,9 +10,10 @@
           <el-date-picker
               v-model="month"
               type="month"
+              value-format="yyyy-MM"
               placeholder="选择月">
           </el-date-picker>
-          <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+          <el-button type="primary" @click="query">查询</el-button>
         </div>
       </el-form-item>
 
@@ -24,7 +25,7 @@
         stripe
         style="width: 100%;">
       <el-table-column
-          prop="billId"
+          prop="id"
           label="订单号"
           width="180">
       </el-table-column>
@@ -44,7 +45,7 @@
           width="180">
       </el-table-column>
       <el-table-column
-          prop="billStat"
+          prop="stat"
           label="订单状态">
       </el-table-column>
     </el-table>
@@ -52,29 +53,31 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
-  name: 'MyDormInfo',
+  name: 'BillInfo',
   data() {
     return {
-      month:'',
-      dormInfo: {
-        dormId: '',
-        apId: '',
-        leaderNo: '',
-        tel: ''
-      },
+      month: '',
+      dormId: '',
       tableData: [],
-      stu_name: '',
-      tel: '',
-      dept: ''
+    }
+  },
+  methods: {
+    query() {
+      this.$axios.get("bill_info?dorm_id="
+          + sessionStorage.getItem("dormId") + "&month="
+          + this.month).then(resp => {
+        console.log(resp.data)
+        this.tableData = resp.data;
+      });
     }
   },
   mounted() {
-    this.$axios.get("selectDormServlet?dorm_id=615").then(resp => {
-      console.log(resp.data);
-      this.tableData = resp.data.member;
-      this.dormInfo = resp.data.dormInfo;
-    });
+    this.dormId = sessionStorage.getItem("dormId").substring(2)
+    this.month = moment().format("YYYY-MM")
+    this.query()
   },
 
 }
@@ -90,9 +93,11 @@ span {
 .el-divider {
   margin: 40px 0 40px 0;
 }
-.el-button{
+
+.el-button {
   margin-left: 40px;
 }
+
 .el-input {
   width: 30%;
 }
