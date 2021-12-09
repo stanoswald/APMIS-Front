@@ -13,6 +13,7 @@ import BillInfo from "@/pages/Student/BillInfo";
 import VisitorReg from "@/pages/Student/VisitorReg";
 import RepairReg from "@/pages/Student/RepairReg";
 import PropertyReg from "@/pages/Student/PropertyReg";
+import MyInfo from "@/pages/MyInfo";
 
 Vue.use(Router)
 
@@ -45,7 +46,8 @@ const router = new Router({
                         {path: "bill", component: BillInfo, meta: {title: "水电查询"}},
                         {path: "repair-reg", component: RepairReg, meta: {title: "报修登记"}},
                         {path: "visitor", component: VisitorReg, meta: {title: "访客登记"}},
-                        {path: "property", component: PropertyReg, meta: {title: "出入物品登记"}}
+                        {path: "property", component: PropertyReg, meta: {title: "出入物品登记"}},
+                        {path: "my-info", component: MyInfo, meta: {title: "个人信息"}}
                     ]
                 }
             ]

@@ -27,12 +27,11 @@
           <template slot="title"><i class="el-icon-setting"></i>个人信息</template>
           <el-menu-item-group>
             <template slot="title">我的</template>
-            <el-menu-item index="/my/info">个人信息</el-menu-item>
-            <el-menu-item index="/my/password">密码设置</el-menu-item>
+            <el-menu-item index="/student/my-info">个人信息</el-menu-item>
+            <el-menu-item index="/student/password">密码设置</el-menu-item>
           </el-menu-item-group>
-          <el-menu-item-group title="账号">
-            <el-menu-item index="/logout">登出</el-menu-item>
-            <el-menu-item index="/switch-account">切换账号</el-menu-item>
+          <el-menu-item-group title="操作">
+            <el-menu-item @click="logout">登出</el-menu-item>
           </el-menu-item-group>
 
         </el-submenu>
@@ -59,6 +58,26 @@ export default {
     onRoutes() {
       return this.$route.path
     }
+  },
+  methods: {
+    logout() {
+      let that = this
+      this.$alert("确认登出？", '登出', {
+        confirmButtonText: '确定'
+      }).then(() => {
+            this.$message({
+              message: '登出成功，正在返回',
+              type: 'success'
+            });
+            setTimeout(function () {
+              that.$router.go(0)
+              sessionStorage.clear()
+            }, 500);
+          }, () => {
+          }
+      )
+    }
+
   }
 };
 </script>
