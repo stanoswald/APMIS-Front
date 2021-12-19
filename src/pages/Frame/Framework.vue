@@ -14,7 +14,7 @@
     </el-header>
 
 
-    <router-view name="aside"></router-view>
+    <router-view></router-view>
 
   </el-container>
 </template>

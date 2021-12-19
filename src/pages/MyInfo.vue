@@ -3,17 +3,25 @@
     <el-form-item label="用户名" prop="username">
       <el-input v-model="form.username" disabled></el-input>
     </el-form-item>
+
     <el-form-item label="姓名" prop="name">
       <el-input v-model="form.name" disabled></el-input>
     </el-form-item>
+
     <el-form-item label="用户角色" prop="role">
       <el-input v-model="form.role" disabled></el-input>
     </el-form-item>
+
     <el-form-item label="电话" prop="tel">
       <el-input v-model="form.tel"></el-input>
+      <el-button class="btn" type="primary" @click="updateUser('tel',form.tel)" :disabled="check('tel')">修改
+      </el-button>
     </el-form-item>
+
     <el-form-item label="邮箱" prop="email">
       <el-input v-model="form.email"></el-input>
+      <el-button class="btn" type="primary" @click="updateUser('email',form.email)" :disabled="check('email')">修改
+      </el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -24,33 +32,38 @@ export default {
   data() {
     return {
       form: {
+        username: '',
+        name: '',
+        role: '',
         tel: '',
         email: ''
       }
     }
   },
   methods: {
-    detail(row) {
-      this.$alert(row.detail, '报修详情', {
-        confirmButtonText: '确定'
-      })
+    check(key) {
+      return this.form[key] === sessionStorage.getItem(key)
     },
-    del(row) {
+    updateUser(key, val) {
       let that = this
-      this.$alert("确认删除？报修单号：" + row.id, '确认删除', {
+      this.$alert('确认修改？', '提示', {
         confirmButtonText: '确定'
       }).then(() => {
-            that.$axios.get("repair_del?id=" + row.id).then(resp => {
+            that.$axios.get("update_user?"
+                + key + '='
+                + val + '&usr='
+                + this.form.username).then(resp => {
               if (resp.data === "success") {
                 this.$message({
-                  message: '删除成功',
+                  message: '修改成功',
                   type: 'success'
                 });
+                sessionStorage.setItem(key, val)
                 setTimeout(function () {
                   that.$router.go(0);
                 }, 1000);
               } else this.$message({
-                message: '删除失败',
+                message: '修改失败',
                 type: 'error'
               });
             })
@@ -60,10 +73,11 @@ export default {
     },
   },
   mounted() {
-    this.$axios.get("repair_info?stu_no=" + sessionStorage.getItem("username"))
-        .then(resp => {
-          this.tableData = resp.data
-        });
+    this.form.username = sessionStorage.getItem("username");
+    this.form.name = sessionStorage.getItem("name");
+    this.form.role = sessionStorage.getItem("role");
+    this.form.tel = sessionStorage.getItem("tel");
+    this.form.email = sessionStorage.getItem("email");
   },
 
 }
@@ -82,5 +96,9 @@ span {
 
 .el-input {
   width: 30%;
+}
+
+.btn {
+  margin-left: 20px;
 }
 </style>

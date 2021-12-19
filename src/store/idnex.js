@@ -8,6 +8,7 @@ const state = {
     role: window.sessionStorage.getItem("role"),
     name: window.sessionStorage.getItem("name"),
     tel: window.sessionStorage.getItem("tel"),
+    email:window.sessionStorage.getItem("email"),
 
     dept: window.sessionStorage.getItem("dept"),
     dormId: window.sessionStorage.getItem("dormId"),
@@ -20,11 +21,13 @@ const mutations = {
         state.role = data.role;
         state.name = data.name;
         state.tel = data.tel;
+        state.email = data.email;
 
         window.sessionStorage.setItem("username", data.username);
         window.sessionStorage.setItem("role", data.role);
         window.sessionStorage.setItem("name", data.name);
         window.sessionStorage.setItem("tel", data.tel);
+        window.sessionStorage.setItem("email", data.email);
     },
     SET_STUDENT: (state, data) => {
         state.dept = data.dept;

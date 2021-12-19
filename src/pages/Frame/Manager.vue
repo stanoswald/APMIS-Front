@@ -4,22 +4,24 @@
       <el-menu :default-active="onRoutes" router>
 
         <el-submenu index="1">
-          <template slot="title"><i class="el-icon-menu"></i>宿舍生活</template>
-          <el-menu-item-group title="信息查询">
-            <el-submenu index="1-1">
-              <template slot="title">宿舍信息查询</template>
-              <el-menu-item index="/student/my-dorm">本宿舍信息
-              </el-menu-item>
-              <el-menu-item index="/student/nearby-dorm">本楼宿舍信息查询</el-menu-item>
-            </el-submenu>
-            <el-menu-item index="/student/repair">报修查询</el-menu-item>
-            <el-menu-item index="/student/bill">水电查询</el-menu-item>
-          </el-menu-item-group>
+          <template slot="title"><i class="el-icon-document"></i>宿舍管理</template>
           <el-menu-item-group>
-            <template slot="title">信息登记</template>
-            <el-menu-item index="/student/repair-reg">报修登记</el-menu-item>
-            <el-menu-item index="/student/visitor">访客登记</el-menu-item>
-            <el-menu-item index="/student/property">出入物品登记</el-menu-item>
+            <template slot="title">信息管理</template>
+            <el-menu-item index="/manager/dorm-info">宿舍信息</el-menu-item>
+            <el-menu-item index="/manager/stu-info">学生信息</el-menu-item>
+            <el-menu-item index="/manager/property">宿舍财产</el-menu-item>
+          </el-menu-item-group>
+
+          <el-menu-item-group title="信息查询">
+            <template slot="title">宿舍信息查询</template>
+            <el-menu-item index="/manager/bill">水电信息</el-menu-item>
+            <el-menu-item index="/manager/repair">报修信息</el-menu-item>
+          </el-menu-item-group>
+
+          <el-menu-item-group>
+            <template slot="title">信息审核</template>
+            <el-menu-item index="/manager/prop-reg">出入物品</el-menu-item>
+            <el-menu-item index="/manager/vis-reg">访客登记</el-menu-item>
           </el-menu-item-group>
 
         </el-submenu>
@@ -27,8 +29,8 @@
           <template slot="title"><i class="el-icon-setting"></i>个人信息</template>
           <el-menu-item-group>
             <template slot="title">我的</template>
-            <el-menu-item index="/student/my-info">个人信息</el-menu-item>
-            <el-menu-item index="/student/set-pwd">密码设置</el-menu-item>
+            <el-menu-item index="/manager/my-info">个人信息</el-menu-item>
+            <el-menu-item index="/manager/set-pwd">密码设置</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="操作">
             <el-menu-item @click="logout">登出</el-menu-item>
@@ -70,7 +72,7 @@ export default {
               type: 'success'
             });
             setTimeout(function () {
-              that.$router.push("/login")
+              that.$router.go(0)
               sessionStorage.clear()
             }, 500);
           }, () => {
